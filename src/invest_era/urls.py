@@ -17,5 +17,5 @@ Including another URLconf
 from django.urls import path, include
 
 urlpatterns = [
-    path('posts/',  include('posts.urls')),
+    path('posts/', include('src.posts.urls')),
 ]

@@ -1,16 +1,6 @@
 version: '3.8'
-services:
-  db:
-    image: postgres
-    environment:
-      POSTGRES_DB: ${DB_NAME}
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWD}
-    ports:
-      - "5433:5432"
-    env_file:
-      - .env
 
+services:
   web:
     build: .
     volumes:
@@ -24,5 +14,16 @@ services:
     command: >
       sh -c "
       echo 'Starting Django server...';
-      exec gunicorn --bind 0.0.0.0:8000 invest_era.wsgi:application --workers 2;
+      exec gunicorn src.invest_era.wsgi:application --bind 0.0.0.0:8000 --workers 2;
       "
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWD}
+    ports:
+      - "5433:5432"
+    env_file:
+      - .env
