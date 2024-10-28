@@ -14,7 +14,7 @@
     ```
 4. Примените миграции:
     ```bash
-    docker-compose exec web python manage.py migrate
+    docker-compose exec web python src/manage.py migrate
     ```
 5. Загрузите моковые данные в PostgreSQL:
     ```bash
